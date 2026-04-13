@@ -1,0 +1,69 @@
+<section id="about" class="section">
+  <div class="orb orb-purple" style="width:350px;height:350px;right:-100px;top:50%;transform:translateY(-50%);"></div>
+  <div class="container">
+    <div class="about-grid">
+      <!-- Left: Avatar + Info -->
+      <div class="about-left">
+        <div class="avatar-wrap">
+          <div class="avatar-ring"></div>
+          <div class="avatar-ring ring2"></div>
+          <div class="avatar-box">
+            <div class="avatar-initials"><img class="myphoto" src="myself.jpeg" alt=""></div>
+          </div>
+          <div class="avatar-badge">
+            <i class="fas fa-code"></i>
+          </div>
+        </div>
+
+        <div class="info-card card">
+          <div class="info-row" *ngFor="let info of infos">
+            <span class="info-icon"><i [class]="info.icon"></i></span>
+            <div>
+              <div class="info-label">{{ info.label }}</div>
+              <div class="info-value">{{ info.value }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Content -->
+      <div class="about-right">
+        <div class="section-header">
+          <div class="section-label">About Me</div>
+          <h2 class="section-title">The Developer <span>Behind the Code</span></h2>
+        </div>
+
+        <p class="about-text">
+          I'm a passionate Full-Stack Developer from Giza, Egypt, with a Bachelor's in Computer Information Systems.
+          I specialize in building scalable, production-ready web applications using modern frameworks and clean architecture principles.
+        </p>
+        <p class="about-text">
+          My journey spans from crafting responsive UIs with Angular to designing robust RESTful APIs with ASP.NET Core —
+          always focused on performance, security, and maintainability.
+        </p>
+        <p class="about-text">
+          I'm a lifelong learner — constantly expanding my skill set through certifications in cloud, AI, data science, and more.
+        </p>
+
+        <div class="about-highlights">
+          <div class="highlight-item" *ngFor="let h of highlights">
+            <div class="hi-icon"><i [class]="h.icon"></i></div>
+            <div>
+              <div class="hi-title">{{ h.title }}</div>
+              <div class="hi-desc">{{ h.desc }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-actions">
+          <a href="mailto:abdullah.ramadanali@gmail.com" class="btn btn-primary">
+            <i class="fas fa-envelope"></i> Email Me
+          </a>
+          <a href="tel:+201110554601" class="btn btn-outline">
+            <i class="fas fa-phone"></i> +20 111 055 4601
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

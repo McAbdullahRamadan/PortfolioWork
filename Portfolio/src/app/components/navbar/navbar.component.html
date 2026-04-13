@@ -1,0 +1,24 @@
+<nav class="navbar" [class.scrolled]="scrolled" [class.menu-open]="menuOpen">
+  <div class="nav-container">
+    <a class="nav-logo" href="#hero">
+      <span class="logo-bracket">&lt;</span><span class="logo-slash">/</span><span class="logo-bracket">&gt;</span>
+    </a>
+
+    <ul class="nav-links" [class.active]="menuOpen">
+      <li *ngFor="let item of navItems">
+        <a [href]="item.href" (click)="closeMenu()">
+          <span class="nav-num">{{ item.num }}</span>{{ item.label }}
+        </a>
+      </li>
+      <li>
+        <a href="mailto:abdullah.ramadanali@gmail.com" class="btn btn-outline nav-cta" (click)="closeMenu()">
+          <i class="fas fa-paper-plane"></i> Hire Me
+        </a>
+      </li>
+    </ul>
+
+    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>

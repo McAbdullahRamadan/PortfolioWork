@@ -1,0 +1,64 @@
+<section id="contact" class="section">
+  <div class="orb orb-purple" style="width:400px;height:400px;left:-100px;bottom:-100px;"></div>
+  <div class="container">
+    <div class="contact-wrap">
+      <!-- Header -->
+      <div class="contact-header">
+        <div class="section-label" style="justify-content:center;">Contact</div>
+        <h2 class="section-title" style="text-align:center;">Let's <span>Work Together</span></h2>
+        <p class="contact-sub">I'm currently open to new opportunities. Whether you have a project, a question, or just want to say hi — my inbox is open.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <div class="contact-card" *ngFor="let c of contacts">
+            <div class="contact-icon" [style.background]="c.bg">
+              <i [class]="c.icon" [style.color]="c.color"></i>
+            </div>
+            <div class="contact-details">
+              <div class="contact-label mono">{{ c.label }}</div>
+              <a [href]="c.href" class="contact-value">{{ c.value }}</a>
+            </div>
+          </div>
+
+          <div class="social-section">
+            <div class="mono" style="font-size:0.75rem;color:#64748b;margin-bottom:16px;">FIND ME ON</div>
+            <div class="social-row">
+              <a href="https://www.linkedin.com/in/abdullahtech01" target="_blank" class="social-big">
+                <i class="fab fa-linkedin-in"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/McAbdullahRamadan" target="_blank" class="social-big">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Panel -->
+        <div class="cta-panel">
+          <div class="cta-inner">
+            <div class="cta-badge mono">Status: Available</div>
+            <h3 class="cta-title">Ready to build something amazing?</h3>
+            <p class="cta-desc">I specialize in Angular, ASP.NET Core, and SQL Server. Let me help you bring your idea to life with clean, scalable code.</p>
+
+            <div class="cta-features">
+              <div class="cta-feat" *ngFor="let f of features">
+                <i class="fas fa-check"></i> {{ f }}
+              </div>
+            </div>
+
+            <a href="mailto:abdullah.ramadanali@gmail.com" class="btn btn-primary cta-btn">
+              <i class="fas fa-paper-plane"></i> Send me an Email
+            </a>
+            <a href="tel:+201110554601" class="btn btn-outline cta-btn">
+              <i class="fas fa-phone"></i> Call Me
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

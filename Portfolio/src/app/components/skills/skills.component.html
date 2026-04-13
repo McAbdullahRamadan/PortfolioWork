@@ -1,0 +1,41 @@
+<section id="skills" class="section" style="background:#0a0e14;">
+  <div class="orb orb-blue" style="width:400px;height:400px;left:-100px;top:50%;transform:translateY(-50%);"></div>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Technical Skills</div>
+      <h2 class="section-title">What I <span>Work With</span></h2>
+    </div>
+
+    <!-- Skill Categories -->
+    <div class="skills-grid">
+      <div class="skill-category card" *ngFor="let cat of categories">
+        <div class="cat-header">
+          <div class="cat-icon"><i [class]="cat.icon"></i></div>
+          <h3 class="cat-title">{{ cat.title }}</h3>
+        </div>
+        <div class="skill-list">
+          <div class="skill-item" *ngFor="let skill of cat.skills">
+            <div class="skill-top">
+              <div class="skill-info">
+                <i [class]="skill.icon" [style.color]="skill.color"></i>
+                <span class="skill-name">{{ skill.name }}</span>
+              </div>
+              <span class="skill-pct mono">{{ skill.level }}%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" [style.width]="skill.level + '%'" [style.background]="skill.color"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Tags -->
+    <div class="tech-tags">
+      <div class="tag-cloud-label mono">Also familiar with:</div>
+      <div class="tag-wrap">
+        <span class="tag tag-purple" *ngFor="let t of extras">{{ t }}</span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,100 @@
+<section id="hero" class="hero grid-bg">
+  <!-- Orbs -->
+  <div class="orb orb-blue" style="width:500px;height:500px;top:-100px;left:-150px;"></div>
+  <div class="orb orb-purple" style="width:400px;height:400px;bottom:0;right:-100px;"></div>
+
+  <div class="container hero-inner">
+    <!-- Left -->
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        <span class="mono">Available for work</span>
+      </div>
+
+      <div class="hero-greeting mono">Hi, I'm</div>
+
+      <h1 class="hero-name">
+        Abdullah<br/>
+        <span class="name-accent">Ramadan Ali</span>
+      </h1>
+
+      <div class="hero-role">
+        <span class="role-prefix mono">&gt; </span>
+        <span class="typed-text">{{ currentRole }}</span>
+        <span class="cursor mono" [class.blink]="true">|</span>
+      </div>
+
+      <p class="hero-desc">
+        Full-Stack Developer crafting scalable web applications with
+        <span class="highlight">Angular</span> &amp; <span class="highlight">ASP.NET Core</span>.
+        Passionate about clean architecture, reactive systems, and elegant UI.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">
+          <i class="fas fa-rocket"></i> View Projects
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <i class="fas fa-envelope"></i> Get in Touch
+        </a>
+      </div>
+
+      <div class="hero-socials">
+        <a href="https://www.linkedin.com/in/abdullahtech01" target="_blank" class="social-link">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/McAbdullahRamadan" target="_blank" class="social-link">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="mailto:abdullah.ramadanali@gmail.com" class="social-link">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: Code Card -->
+    <div class="hero-visual animate-float">
+      <div class="code-card">
+        <div class="code-header">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+          <span class="code-filename mono">developer.ts</span>
+        </div>
+        <div class="scan-line"></div>
+        <pre class="code-body"><code><span class="c-keyword">const</span> <span class="c-var">developer</span> <span class="c-op">=</span> &#123;
+<span class="c-prop">name</span><span class="c-op">:</span> <span class="c-str">'Abdullah Ramadan'</span>,
+<span class="c-prop">location</span><span class="c-op">:</span> <span class="c-str">'Giza, Egypt 🇪🇬'</span>,
+<span class="c-prop">stack</span><span class="c-op">:</span> [
+<span class="c-str">'Angular 19'</span>,
+<span class="c-str">'ASP.NET Core'</span>,
+<span class="c-str">'SQL Server'</span>,
+<span class="c-str">'TypeScript'</span>,
+],
+<span class="c-prop">focus</span><span class="c-op">:</span> <span class="c-str">'Full-Stack Dev'</span>,
+<span class="c-prop">openToWork</span><span class="c-op">:</span> <span class="c-bool">true</span>,
+&#125;;</code></pre>
+      </div>
+
+      <div class="stat-chips">
+        <div class="chip">
+          <span class="chip-num">5+</span>
+          <span class="chip-label">Projects</span>
+        </div>
+        <div class="chip">
+          <span class="chip-num">10+</span>
+          <span class="chip-label">Certifications</span>
+        </div>
+        <div class="chip">
+          <span class="chip-num">3+</span>
+          <span class="chip-label">Years Learning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span class="mono">Scroll</span>
+  </div>
+</section>

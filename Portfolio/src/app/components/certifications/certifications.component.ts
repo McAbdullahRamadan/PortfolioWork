@@ -1,0 +1,102 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-certifications',
+  standalone: false,
+  templateUrl: './certifications.component.html',
+  styleUrl: './certifications.component.css'
+})
+export class CertificationsComponent {
+  certs = [
+    {
+      title: 'Microsoft Azure Fundamentals (AZ-900)',
+      provider: 'Microsoft / Udemy',
+      icon: 'fab fa-microsoft',
+      iconColor: '#0089d6',
+      provBg: 'rgba(0,137,214,0.12)',
+      date: 'Dec 2025',
+      badgeClass: 'cert-badge badge-blue',
+    },
+    {
+      title: 'AWS Cloud Fundamentals',
+      provider: 'AWS / Udemy',
+      icon: 'fab fa-aws',
+      iconColor: '#ff9900',
+      provBg: 'rgba(255,153,0,0.12)',
+      date: 'Dec 2025',
+      badgeClass: 'cert-badge badge-orange',
+    },
+    {
+      title: 'Complete SQL Course 2025 + 500 Practice Questions',
+      provider: 'Udemy',
+      icon: 'fas fa-database',
+      iconColor: '#00d4ff',
+      provBg: 'rgba(0,212,255,0.08)',
+      date: 'Dec 2025',
+      badgeClass: 'cert-badge badge-blue',
+    },
+    {
+      title: 'Introduction to Data Science',
+      provider: 'Cisco Networking Academy',
+      icon: 'fas fa-chart-line',
+      iconColor: '#1ba0d7',
+      provBg: 'rgba(27,160,215,0.1)',
+      date: 'Jan 2026',
+      badgeClass: 'cert-badge badge-blue',
+    },
+    {
+      title: 'C Programming From Basics to Mastery',
+      provider: 'Mahara-Tech',
+      icon: 'fas fa-terminal',
+      iconColor: '#10b981',
+      provBg: 'rgba(16,185,129,0.1)',
+      date: 'Jan 2026',
+      badgeClass: 'cert-badge badge-green',
+    },
+    {
+      title: 'ReactJS',
+      provider: 'Mahara-Tech',
+      icon: 'fab fa-react',
+      iconColor: '#61dafb',
+      provBg: 'rgba(97,218,251,0.08)',
+      date: 'Jan 2026',
+      badgeClass: 'cert-badge badge-blue',
+    },
+    {
+      title: 'The Principles of Writing Clean Code',
+      provider: 'Mahara-Tech',
+      icon: 'fas fa-code',
+      iconColor: '#a78bfa',
+      provBg: 'rgba(124,58,237,0.1)',
+      date: 'Jan 2026',
+      badgeClass: 'cert-badge badge-purple',
+    },
+    {
+      title: 'Web Development Fundamentals',
+      provider: 'IBM',
+      icon: 'fas fa-globe',
+      iconColor: '#1f70c1',
+      provBg: 'rgba(31,112,193,0.1)',
+      date: 'Jan 2026',
+      badgeClass: 'cert-badge badge-blue',
+    },
+    {
+      title: 'AI Fundamentals + Capstone Project',
+      provider: 'IBM',
+      icon: 'fas fa-brain',
+      iconColor: '#f59e0b',
+      provBg: 'rgba(245,158,11,0.1)',
+      date: 'Jan 2026',
+      badgeClass: 'cert-badge badge-orange',
+    },
+    {
+      title: 'Innovegypt Program — 45-Hour Training',
+      provider: 'ITIDA',
+      icon: 'fas fa-rocket',
+      iconColor: '#10b981',
+      provBg: 'rgba(16,185,129,0.1)',
+      date: 'Feb 2026',
+      badgeClass: 'cert-badge badge-green',
+    },
+  ];
+}

@@ -1,0 +1,47 @@
+<section id="projects" class="section">
+  <div class="orb orb-purple" style="width:400px;height:400px;right:-120px;top:10%;"></div>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Portfolio</div>
+      <h2 class="section-title">Featured <span>Projects</span></h2>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card" *ngFor="let p of projects; let i = index">
+        <div class="project-top">
+          <div class="project-num mono">0{{ i + 1 }}</div>
+          <div class="project-links">
+            <a [href]="p.github" target="_blank" class="proj-link" title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-icon-wrap">
+          <div class="project-icon" [style.background]="p.iconBg">
+            <i [class]="p.icon" [style.color]="p.iconColor"></i>
+          </div>
+        </div>
+
+        <h3 class="project-title">{{ p.title }}</h3>
+        <p class="project-desc">{{ p.desc }}</p>
+
+        <div class="project-features">
+          <div class="feat" *ngFor="let f of p.features">
+            <i class="fas fa-check-circle"></i> {{ f }}
+          </div>
+        </div>
+
+        <div class="project-tags">
+          <span class="tag" [class]="getTagClass(t)" *ngFor="let t of p.tags">{{ t }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="projects-footer">
+      <a href="https://github.com/McAbdullahRamadan" target="_blank" class="btn btn-outline">
+        <i class="fab fa-github"></i> View All on GitHub
+      </a>
+    </div>
+  </div>
+</section>

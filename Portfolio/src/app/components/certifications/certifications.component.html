@@ -1,0 +1,25 @@
+<section id="certifications" class="section" style="background:#0a0e14;">
+  <div class="orb orb-blue" style="width:350px;height:350px;right:-80px;bottom:0;"></div>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Certifications</div>
+      <h2 class="section-title">Learning <span>Never Stops</span></h2>
+    </div>
+
+    <div class="certs-grid">
+      <div class="cert-card" *ngFor="let cert of certs">
+        <div class="cert-provider" [style.background]="cert.provBg">
+          <i [class]="cert.icon" [style.color]="cert.iconColor"></i>
+          <span>{{ cert.provider }}</span>
+        </div>
+        <div class="cert-body">
+          <h4 class="cert-title">{{ cert.title }}</h4>
+          <div class="cert-date mono">{{ cert.date }}</div>
+        </div>
+        <div class="cert-badge" [class]="cert.badgeClass">
+          <i class="fas fa-certificate"></i> Certified
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
