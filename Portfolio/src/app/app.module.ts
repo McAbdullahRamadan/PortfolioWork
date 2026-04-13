@@ -11,6 +11,8 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { CertificationsComponent } from './components/certifications/certifications.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ReviewComponent } from './components/review/review.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { FooterComponent } from './components/footer/footer.component';
     ProjectsComponent,
     CertificationsComponent,
     ContactComponent,
-    FooterComponent
+    FooterComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

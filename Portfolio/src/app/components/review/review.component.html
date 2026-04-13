@@ -1,0 +1,161 @@
+<div class="particles" id="particles"></div>
+<div class="orb orb-blue" style="width:420px;height:420px;top:-120px;left:-160px"></div>
+<div class="orb orb-purple" style="width:340px;height:340px;bottom:-80px;right:-120px"></div>
+
+<div class="form-card" id="formCard">
+  <!-- HEADER -->
+  <div class="card-header">
+    <div class="header-badge">
+      <i class="fas fa-star-of-life"></i>
+      <span>Rate My Portfolio</span>
+    </div>
+    <h1 class="card-title">Share Your <span>Feedback</span></h1>
+    <p class="card-subtitle">Your honest opinion helps me grow. Takes less than a minute!</p>
+  </div>
+
+  <!-- FORM BODY -->
+  <div class="card-body" id="formBody" *ngIf="!state.submitted">
+    <form id="reviewForm" (ngSubmit)="onSubmit()" novalidate>
+      <!-- Name + Email Row -->
+      <div class="fields-row">
+        <div class="field-group">
+          <label class="field-label" for="iName">
+            <i class="fas fa-user-astronaut"></i>
+            <span>Your Name</span>
+          </label>
+          <input
+            class="field-input"
+            [class.error]="state.errors['name'] && state.touched['name']"
+            id="iName"
+            type="text"
+            placeholder="John Doe"
+            autocomplete="name"
+            [(ngModel)]="state.name"
+            (input)="onFieldInput('name', $any($event.target).value)"
+            name="name"
+            required>
+          <div class="field-error" [class.visible]="state.errors['name'] && state.touched['name']">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>{{ state.errors['name'] }}</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="iEmail">
+            <i class="fas fa-paper-plane"></i>
+            <span>Email Address</span>
+          </label>
+          <input
+            class="field-input"
+            [class.error]="state.errors['email'] && state.touched['email']"
+            id="iEmail"
+            type="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            [(ngModel)]="state.email"
+            (input)="onFieldInput('email', $any($event.target).value)"
+            name="email"
+            required>
+          <div class="field-error" [class.visible]="state.errors['email'] && state.touched['email']">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>{{ state.errors['email'] }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes Field -->
+      <div class="field-group">
+        <label class="field-label" for="iNotes">
+          <i class="fas fa-feather-alt"></i>
+          <span>Your Notes</span>
+        </label>
+        <textarea
+          class="field-textarea"
+          [class.error]="state.errors['notes'] && state.touched['notes']"
+          id="iNotes"
+          placeholder="What did you think about the portfolio? Any suggestions or comments..."
+          rows="4"
+          [(ngModel)]="state.notes"
+          (input)="onFieldInput('notes', $any($event.target).value)"
+          name="notes"></textarea>
+        <div class="field-error" [class.visible]="state.errors['notes'] && state.touched['notes']">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>{{ state.errors['notes'] }}</span>
+        </div>
+      </div>
+
+      <!-- RATING SECTION -->
+      <div class="rating-section">
+        <div class="rating-label">
+          <i class="fas fa-chart-line"></i>
+          <span>Rate My Portfolio</span>
+        </div>
+
+        <!-- Stars -->
+        <div class="stars-wrap">
+          <span
+            *ngFor="let star of [1,2,3,4,5]; let i = index"
+            class="star"
+            [class.active]="i < state.starRating"
+            (click)="setStarRating(star)"
+            (mouseenter)="onStarHover(star)"
+            (mouseleave)="onStarLeave()"
+            [attr.data-value]="star"
+            [attr.title]="starLabels[star]">
+            ★
+          </span>
+        </div>
+
+        <div class="rating-text" id="rText" [class.rated]="state.starRating > 0">
+          {{ state.starRating > 0 ? starLabels[state.starRating] : 'Click a star to rate' }}
+        </div>
+
+        <!-- 1-10 Scale -->
+        <div class="rating-scale">
+          <span class="scale-label">Score 1-10:</span>
+          <div class="scale-btns" id="scaleBtns">
+            <button
+              *ngFor="let num of scaleNumbers"
+              type="button"
+              class="scale-btn"
+              [class.active]="num === state.scaleScore"
+              [attr.data-value]="num"
+              (click)="setScaleScore(num)">
+              {{ num }}
+            </button>
+          </div>
+        </div>
+
+        <div class="field-error" [class.visible]="state.errors['rating'] && state.touched['rating']">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>{{ state.errors['rating'] }}</span>
+        </div>
+      </div>
+
+      <!-- SUBMIT BUTTON -->
+      <button type="submit" class="btn-send" [class.loading]="state.loading" [disabled]="state.loading">
+        <span class="btn-text">
+          <i class="fas fa-paper-plane"></i>
+          <span>&nbsp; Send Review</span>
+        </span>
+        <div class="spinner"></div>
+      </button>
+    </form>
+  </div>
+
+  <!-- SUCCESS PANEL -->
+  <div class="success-panel" [class.visible]="state.submitted">
+    <div class="success-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h2 class="success-title">Thank You! 🎉</h2>
+    <p class="success-sub">
+      Your feedback has been sent to Abdullah. He really appreciates you taking the time!
+    </p>
+    <div class="success-meta" id="sMeta"></div>
+    <button class="btn-reset" (click)="resetForm()">
+      <i class="fas fa-redo-alt"></i>
+      <span> Submit Another Review</span>
+    </button>
+  </div>
+</div>
