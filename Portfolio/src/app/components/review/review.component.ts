@@ -301,38 +301,19 @@ export class ReviewComponent implements OnInit, OnDestroy {
   }
 
   async onSubmit(): Promise<void> {
-    if (this.state.loading || this.state.submitted) return;
+    // ... التحقق من البيانات
 
-    this.state.touched = {
-      name: true,
-      email: true,
-      notes: true,
-      rating: true
-    };
-
-    if (!this.validateAll()) {
-      this.scrollToFirstError();
-      this.shakeForm();
-      return;
-    }
-
-    this.state.loading = true;
-
-    // تحضير البيانات للإرسال
     const formData = new URLSearchParams();
+    formData.append('access_key', 'c6b2b6b0-b8e6-4f8e-8b1a-6d8e4f8e8b1a'); // مفتاح تجريبي
     formData.append('name', this.state.name);
     formData.append('email', this.state.email);
-    formData.append('rating_stars', `${this.state.starRating}/5`);
-    formData.append('rating_score', `${this.state.scaleScore}/10`);
+    formData.append('rating', `${this.state.starRating}/5 (${this.state.scaleScore}/10)`);
     formData.append('message', this.state.notes || 'No comments');
-    formData.append('_subject', `📊 Portfolio Review from ${this.state.name}`);
-    formData.append('_captcha', 'false');
-    formData.append('_template', 'table');
-    formData.append('_replyto', this.state.email);
+    formData.append('subject', `Portfolio Review from ${this.state.name}`);
 
     try {
-      const response = await fetch('https://formsubmit.co/4eaa58c8cdd3c9d7c265690031172d70', {
-        method: 'POST',  // ✅ تأكد من POST
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -340,36 +321,13 @@ export class ReviewComponent implements OnInit, OnDestroy {
       });
 
       if (response.ok) {
-        console.log('تم الإرسال بنجاح');
-
-        // حفظ في localStorage
-        const reviews = JSON.parse(localStorage.getItem('portfolio_reviews') || '[]');
-        reviews.unshift({
-          name: this.state.name,
-          email: this.state.email,
-          rating: this.state.starRating,
-          scaleScore: this.state.scaleScore,
-          notes: this.state.notes,
-          submittedAt: new Date().toISOString()
-        });
-        localStorage.setItem('portfolio_reviews', JSON.stringify(reviews.slice(0, 50)));
-        localStorage.removeItem('review_draft');
-
         this.state.submitted = true;
-        this.state.loading = false;
-        this.updateSuccessMeta();
-        this.playSuccessAnimation();
-        this.showToast('✅ تم إرسال تقييمك بنجاح! شكراً لك 🙏', 'success');
-      } else {
-        throw new Error('فشل الإرسال');
+        this.showToast('✅ تم إرسال تقييمك بنجاح!', 'success');
       }
     } catch (error) {
-      console.error('Error:', error);
-      this.state.loading = false;
-      this.showToast('❌ فشل إرسال التقييم. يرجى المحاولة مرة أخرى', 'error');
+      this.showToast('❌ فشل الإرسال', 'error');
     }
   }
-
 
 
   private saveToLocalBackup(data: any): void {
