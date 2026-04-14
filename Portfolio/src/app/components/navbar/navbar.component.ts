@@ -23,8 +23,28 @@ export class NavbarComponent implements OnInit {
   @HostListener('window:scroll')
   onScroll() {
     this.scrolled = window.scrollY > 50;
+    if (this.menuOpen) {
+      this.closeMenu();
+    }
   }
 
-  toggleMenu() { this.menuOpen = !this.menuOpen; }
-  closeMenu() { this.menuOpen = false; }
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+    if (this.menuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+  }
+
+  closeMenu() {
+    this.menuOpen = false;
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+  }
 }
