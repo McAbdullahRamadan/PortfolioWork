@@ -17,7 +17,10 @@
       </li>
     </ul>
 
-    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Toggle menu">
+    <button  class="hamburger"
+    (click)="menuOpen = !menuOpen"
+    [class.open]="menuOpen"
+    aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
   </div>

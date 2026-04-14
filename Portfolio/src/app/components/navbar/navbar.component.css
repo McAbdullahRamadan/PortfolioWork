@@ -114,6 +114,7 @@
   .nav-links.active,
   .navbar.scrolled .nav-links.active {
     transform: translateX(0);
+    margin-top: 57px;
   }
 
   /* حاوية الروابط */
