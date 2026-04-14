@@ -301,32 +301,61 @@ export class ReviewComponent implements OnInit, OnDestroy {
   }
 
   async onSubmit(): Promise<void> {
-    // ... التحقق من البيانات
+    if (this.state.loading || this.state.submitted) return;
 
-    const formData = new URLSearchParams();
-    formData.append('access_key', 'c6b2b6b0-b8e6-4f8e-8b1a-6d8e4f8e8b1a'); // مفتاح تجريبي
-    formData.append('name', this.state.name);
-    formData.append('email', this.state.email);
-    formData.append('rating', `${this.state.starRating}/5 (${this.state.scaleScore}/10)`);
-    formData.append('message', this.state.notes || 'No comments');
-    formData.append('subject', `Portfolio Review from ${this.state.name}`);
+    this.state.touched = {
+      name: true,
+      email: true,
+      notes: true,
+      rating: true
+    };
 
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formData.toString()
-      });
-
-      if (response.ok) {
-        this.state.submitted = true;
-        this.showToast('✅ تم إرسال تقييمك بنجاح!', 'success');
-      }
-    } catch (error) {
-      this.showToast('❌ فشل الإرسال', 'error');
+    if (!this.validateAll()) {
+      this.scrollToFirstError();
+      this.shakeForm();
+      return;
     }
+
+    this.state.loading = true;
+
+    // استخدام FormSubmit - سيفتح صفحة التأكيد
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://formsubmit.co/abdullah.ramadanali@gmail.com'; // بريد مباشر
+    form.style.display = 'none';
+    form.target = '_blank';
+
+    const fields = {
+      name: this.state.name,
+      email: this.state.email,
+      'Rating (stars)': `${this.state.starRating}/5`,
+      'Rating (score)': `${this.state.scaleScore}/10`,
+      message: this.state.notes || 'No comments',
+      _subject: `📊 Portfolio Review from ${this.state.name}`,
+      _captcha: 'false',
+      _template: 'table',
+      _replyto: this.state.email
+    };
+
+    Object.entries(fields).forEach(([name, value]) => {
+      const input = document.createElement('input');
+      input.name = name;
+      input.value = value;
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+
+    // عرض رسالة النجاح
+    this.state.submitted = true;
+    this.state.loading = false;
+    this.updateSuccessMeta();
+    this.playSuccessAnimation();
+    this.showToast('✅ تم إرسال تقييمك! شكراً لك 🙏', 'success');
+    localStorage.removeItem('review_draft');
+
+    setTimeout(() => form.remove(), 2000);
   }
 
 
