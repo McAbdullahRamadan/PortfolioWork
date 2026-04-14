@@ -164,7 +164,7 @@ app-review-form {
 .field-input.error,
 .field-textarea.error {
   border-color: var(--danger);
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  box-shadow: 0 0 0 3px rgba(243, 3, 3, 0.287);
 }
 .field-textarea { min-height: 110px; line-height: 1.7; }
 .field-error {
