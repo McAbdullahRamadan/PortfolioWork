@@ -318,44 +318,56 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
     this.state.loading = true;
 
-    // استخدام FormSubmit - سيفتح صفحة التأكيد
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = 'https://formsubmit.co/abdullah.ramadanali@gmail.com'; // بريد مباشر
-    form.style.display = 'none';
-    form.target = '_blank';
+    // استخدام Fetch API - لا يفتح أي تبويب
+    const formData = new URLSearchParams();
+    formData.append('name', this.state.name);
+    formData.append('email', this.state.email);
+    formData.append('Rating (stars)', `${this.state.starRating}/5`);
+    formData.append('Rating (score)', `${this.state.scaleScore}/10`);
+    formData.append('message', this.state.notes || 'No comments');
+    formData.append('_subject', `📊 Portfolio Review from ${this.state.name}`);
+    formData.append('_captcha', 'false');
+    formData.append('_template', 'table');
+    formData.append('_replyto', this.state.email);
 
-    const fields = {
-      name: this.state.name,
-      email: this.state.email,
-      'Rating (stars)': `${this.state.starRating}/5`,
-      'Rating (score)': `${this.state.scaleScore}/10`,
-      message: this.state.notes || 'No comments',
-      _subject: `📊 Portfolio Review from ${this.state.name}`,
-      _captcha: 'false',
-      _template: 'table',
-      _replyto: this.state.email
-    };
+    try {
+      const response = await fetch('https://formsubmit.co/abdullah.ramadanali@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData.toString()
+      });
 
-    Object.entries(fields).forEach(([name, value]) => {
-      const input = document.createElement('input');
-      input.name = name;
-      input.value = value;
-      form.appendChild(input);
-    });
+      if (response.ok) {
+        console.log('تم الإرسال بنجاح');
 
-    document.body.appendChild(form);
-    form.submit();
+        // حفظ في localStorage
+        const reviews = JSON.parse(localStorage.getItem('portfolio_reviews') || '[]');
+        reviews.unshift({
+          name: this.state.name,
+          email: this.state.email,
+          rating: this.state.starRating,
+          scaleScore: this.state.scaleScore,
+          notes: this.state.notes,
+          submittedAt: new Date().toISOString()
+        });
+        localStorage.setItem('portfolio_reviews', JSON.stringify(reviews.slice(0, 50)));
+        localStorage.removeItem('review_draft');
 
-    // عرض رسالة النجاح
-    this.state.submitted = true;
-    this.state.loading = false;
-    this.updateSuccessMeta();
-    this.playSuccessAnimation();
-    this.showToast('✅ تم إرسال تقييمك! شكراً لك 🙏', 'success');
-    localStorage.removeItem('review_draft');
-
-    setTimeout(() => form.remove(), 2000);
+        this.state.submitted = true;
+        this.state.loading = false;
+        this.updateSuccessMeta();
+        this.playSuccessAnimation();
+        this.showToast('✅ تم إرسال تقييمك بنجاح! شكراً لك 🙏', 'success');
+      } else {
+        throw new Error('فشل الإرسال');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      this.state.loading = false;
+      this.showToast('❌ فشل إرسال التقييم. يرجى المحاولة مرة أخرى', 'error');
+    }
   }
 
 
