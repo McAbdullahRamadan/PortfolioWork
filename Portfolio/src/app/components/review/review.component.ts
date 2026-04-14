@@ -318,10 +318,10 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
     this.state.loading = true;
 
-    // استخدام FormSubmit (مجاني ويعمل فوراً)
+    // استخدام FormSubmit مع الرقم المميز
     const form = document.createElement('form');
     form.method = 'POST';
-    form.action = 'https://formsubmit.co/abdullah.ramadanali@gmail.com';
+    form.action = 'https://formsubmit.co/4eaa58c8cdd3c9d7c265690031172d70'; // ✅ استخدم الرقم المميز
     form.style.display = 'none';
     form.target = '_blank';
 
@@ -334,7 +334,8 @@ export class ReviewComponent implements OnInit, OnDestroy {
       _subject: `📊 Portfolio Review from ${this.state.name}`,
       _captcha: 'false',
       _template: 'table',
-      _replyto: this.state.email
+      _replyto: this.state.email,
+      _next: window.location.href + '?success=true'  // إضافة هذا ليعود للصفحة بعد الإرسال
     };
 
     Object.entries(fields).forEach(([name, value]) => {
@@ -346,7 +347,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
     document.body.appendChild(form);
 
-    // محاكاة الإرسال وعرض النجاح
+    // إرسال النموذج
     setTimeout(() => {
       form.submit();
       this.state.submitted = true;
